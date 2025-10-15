@@ -1,0 +1,21 @@
+{
+  "name": "hardhat",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "chain": "hardhat node --network hardhat",
+    "compile": "hardhat compile",
+    "deploy:localhost": "hardhat deploy --network localhost",
+    "test": "hardhat test"
+  },
+  "dependencies": {
+    "@fhevm/hardhat-plugin": "^0.1.5",
+    "@fhevm/solidity": "^0.5.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.16",
+    "hardhat-deploy": "^0.11.45"
+  }
+}
+
