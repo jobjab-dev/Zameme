@@ -13,10 +13,10 @@
     ]
   },
   "scripts": {
-    "postinstall": "cd node_modules/fhevm-sdk && pnpm install && pnpm build || echo 'SDK setup...'",
     "chain": "pnpm --filter ./packages/hardhat chain",
     "compile": "pnpm --filter ./packages/hardhat compile",
     "deploy:localhost": "pnpm --filter ./packages/hardhat deploy:localhost && pnpm generate",
+    "deploy:sepolia": "pnpm --filter ./packages/hardhat deploy:sepolia && pnpm generate",
     "generate": "ts-node ./scripts/generateTsAbis.ts",
     "start": "pnpm --filter ./packages/nextjs dev",
     "build": "pnpm --filter ./packages/nextjs build",

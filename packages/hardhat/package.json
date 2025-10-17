@@ -6,6 +6,7 @@
     "chain": "hardhat node --network hardhat",
     "compile": "hardhat compile",
     "deploy:localhost": "hardhat deploy --network localhost",
+    "deploy:sepolia": "hardhat deploy --network sepolia",
     "test": "hardhat test"
   },
   "dependencies": {
@@ -13,6 +14,7 @@
     "@fhevm/solidity": "^0.5.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.4.5",
     "ethers": "^6.13.4",
     "hardhat": "^2.22.16",
     "hardhat-deploy": "^0.11.45"
