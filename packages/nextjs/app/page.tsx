@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useAccount, useConnect } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { CreateLaunch } from '~/components/CreateLaunch';
-import { BrowseLaunches } from '~/components/BrowseLaunches';
-import { MyContributions } from '~/components/MyContributions';
+import { CreateToken } from '~/components/CreateToken';
+import { BrowseTokens } from '~/components/BrowseTokens';
+import { MyPrivateReceipts } from '~/components/MyPrivateReceipts';
 
 export default function ZamemePage() {
   const [activeTab, setActiveTab] = useState<'browse' | 'create' | 'my'>('browse');
@@ -40,21 +40,21 @@ export default function ZamemePage() {
               onClick={() => setActiveTab('browse')}
               icon="🔥"
               label="Browse"
-              desc="Active Launches"
+              desc="Bonding Curves"
             />
             <TabButton
               active={activeTab === 'create'}
               onClick={() => setActiveTab('create')}
               icon="✨"
-              label="Create"
-              desc="New Launch"
+              label="Launch"
+              desc="New Token"
             />
             <TabButton
               active={activeTab === 'my'}
               onClick={() => setActiveTab('my')}
-              icon="📊"
-              label="My Launches"
-              desc="Private View"
+              icon="🔒"
+              label="My Receipts"
+              desc="Private (Decrypt)"
             />
           </div>
         </div>
@@ -77,9 +77,9 @@ export default function ZamemePage() {
           </div>
         ) : (
           <>
-            {activeTab === 'browse' && <BrowseLaunches />}
-            {activeTab === 'create' && <CreateLaunch />}
-            {activeTab === 'my' && <MyContributions />}
+            {activeTab === 'browse' && <BrowseTokens />}
+            {activeTab === 'create' && <CreateToken />}
+            {activeTab === 'my' && <MyPrivateReceipts />}
           </>
         )}
       </main>
