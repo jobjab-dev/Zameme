@@ -5,8 +5,9 @@
   "scripts": {
     "chain": "hardhat node --network hardhat",
     "compile": "hardhat compile",
-    "deploy:localhost": "hardhat deploy --network localhost",
-    "deploy:sepolia": "hardhat deploy --network sepolia",
+    "clean": "hardhat clean && rimraf deployments cache artifacts typechain-types",
+    "deploy:localhost": "hardhat deploy --network localhost --reset",
+    "deploy:sepolia": "hardhat deploy --network sepolia --reset",
     "test": "hardhat test"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "@fhevm/solidity": "^0.8.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
     "@zama-fhe/oracle-solidity": "^0.2.0",
     "debug": "^4.1.1",
     "dotenv": "^16.4.5",
@@ -23,7 +25,8 @@
     "hardhat": "^2.22.16",
     "hardhat-deploy": "^0.11.45",
     "picocolors": "^1.1.1",
-    "resolve": "^1.22.10"
+    "resolve": "^1.22.10",
+    "rimraf": "^5.0.0"
   }
 }
 

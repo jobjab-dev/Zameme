@@ -1,6 +1,6 @@
 # 🎯 Zameme.fun - Confidential Fair Launch with Bonding Curve
 
-> **Privacy-first pump.fun alternative powered by Zama FHE**
+> **Privacy-first Fair Launch Platform powered by Zama FHE**
 
 [![Theme](https://img.shields.io/badge/theme-Yellow%20%26%20Black-FFD700)]()
 [![FHEVM](https://img.shields.io/badge/FHEVM-Powered-purple.svg)](https://docs.zama.ai/)
@@ -8,71 +8,73 @@
 
 **Built with:** [Universal FHEVM SDK (jobjab-fhevm-sdk)](https://www.npmjs.com/package/jobjab-fhevm-sdk)
 
----
+## 🌐 Live Demo
+
+🚀 **[Try Zameme.fun Now](https://your-demo-link-here.vercel.app)** 
+
+*Deploy to Sepolia testnet - Get free testnet ETH from [sepoliafaucet.com](https://sepoliafaucet.com/)*
 
 ## 💡 What is Zameme?
 
-**Zameme** คือ Fair Launch Platform สำหรับ Meme Tokens แบบ **pump.fun** แต่เพิ่ม **Privacy Layer** ด้วยเทคโนโลยี **FHE (Fully Homomorphic Encryption)** จาก Zama
+**Zameme** is a **Privacy-First Fair Launch Platform** for Meme Tokens using Zama's **FHE (Fully Homomorphic Encryption)** technology.
 
-### 🔥 เหมือน pump.fun แต่มี Privacy
+### 🔥 Key Features
 
-| Feature | pump.fun | **Zameme** |
-|---------|----------|------------|
-| Bonding Curve | ✅ | ✅ |
-| No Time Limit | ✅ | ✅ |
-| Progress-based | ✅ | ✅ |
-| Fair Launch | ✅ | ✅ |
-| **Individual Privacy** | ❌ | **✅ FHE Encrypted** |
-| **Private Receipts** | ❌ | **✅ EIP-712 Decrypt** |
+- ✅ **Bonding Curve** - Linear price discovery
+- ✅ **No Time Limit** - Progress-based graduation
+- ✅ **Fair Launch** - Equal opportunity for all
+- ✅ **Individual Privacy** - FHE encrypted contributions
+- ✅ **Private Receipts** - EIP-712 signature decryption
+- ✅ **Auto-Graduate** - Automatic DEX listing at target
 
 ---
 
 ## 🔒 Privacy Features
 
-### สิ่งที่เป็น **PUBLIC** (ทุกคนเห็น):
-- ✅ **Progress Bar** - ความคืบหน้า 0-100%
-- ✅ **Current Price** - ราคาปัจจุบัน (เพิ่มตาม demand)
-- ✅ **Total Raised** - ยอดรวมทั้งหมด
-- ✅ **Remaining to Graduate** - ETH ที่เหลือจน graduate
-- ✅ **Contributors Count** - จำนวนผู้ร่วม
+### **PUBLIC** Data (everyone sees):
+- ✅ **Progress Bar** - 0-100% completion
+- ✅ **Current Price** - Increases with demand
+- ✅ **Total Raised** - Overall ETH collected
+- ✅ **Remaining to Graduate** - ETH needed to finish
+- ✅ **Contributors Count** - Number of buyers
 
-### สิ่งที่เป็น **PRIVATE** (FHE Encrypted):
-- 🔒 **Individual Amounts** - ใครซื้อเท่าไร
-- 🔒 **Token Balances** - ใครได้ token เท่าไร
-- 🔒 **Private Receipts** - ดูยอดของตัวเองผ่าน EIP-712 signature
+### **PRIVATE** Data (FHE Encrypted):
+- 🔒 **Individual Amounts** - How much each person bought
+- 🔒 **Token Balances** - How many tokens each person received
+- 🔒 **Private Receipts** - View your own amounts via EIP-712 signature
 
-**สรุป:** ทุกคนเห็น **ภาพรวม** แต่เห็นเฉพาะ **ยอดของตัวเอง**
+**Summary:** Everyone sees the **big picture**, but only **your own amounts**.
 
 ---
 
 ## ⚡ How It Works
 
-### 1. **Creator** สร้าง Token
+### 1. **Creator** Launches Token
 ```
 ✨ Launch New Token
-├─ ชื่อ + Symbol
-├─ รูปภาพ + คำอธิบาย
+├─ Name + Symbol
+├─ Image + Description
 └─ Target: 10 ETH (auto-graduate)
 ```
 
-### 2. **Buyers** ซื้อผ่าน Bonding Curve
+### 2. **Buyers** Purchase via Bonding Curve
 ```
 💰 Buy Tokens
-├─ ราคาเพิ่มตาม demand (linear curve)
-├─ ยอดถูก encrypt ด้วย FHE
-└─ เก็บ on-chain แบบ confidential
+├─ Price increases with demand (linear curve)
+├─ Amount encrypted with FHE
+└─ Stored on-chain confidentially
 ```
 
-### 3. **Platform** แสดงข้อมูล Public
+### 3. **Platform** Shows Public Info
 ```
 📊 Public Info
 ├─ Progress: 67% (6.7/10 ETH)
 ├─ Price: 0.000000067 ETH
 ├─ Remaining: 3.3 ETH
-└─ Contributors: 15 🔒 (ไม่บอกว่าใครซื้อเท่าไร)
+└─ Contributors: 15 🔒 (amounts hidden)
 ```
 
-### 4. **Graduate** เมื่อถึง 10 ETH
+### 4. **Graduate** at 10 ETH
 ```
 🎓 Auto-Graduate
 ├─ Reveal total raised (public decrypt)
@@ -83,8 +85,8 @@
 ```
 🔓 My Private Receipts
 ├─ Sign EIP-712 message
-├─ Decrypt ยอดของตัวเอง
-└─ เฉพาะเจ้าของเท่านั้นเห็น
+├─ Decrypt your own amounts
+└─ Only you can see this!
 ```
 
 ---
@@ -98,87 +100,170 @@ nvm use 20
 
 # pnpm
 npm install -g pnpm
+
+# Storacha CLI (for Web3.Storage setup)
+npm install -g @storacha/cli
+```
+
+---
+
+### Setup Web3.Storage (Required for Image Upload - 5GB Free!)
+
+**Step 1: Create Agent Key**
+```bash
+storacha key create
+# Output: 
+# did:key:z6Mkh9... (Agent DID)
+# MgCb+bRGl0... (Private Key)
+```
+
+**Step 2: Login**
+```bash
+storacha login your@email.com
+# Check email and click verification link
+```
+
+**Step 3: Create Space**
+```bash
+storacha space create Zameme
+# Output: did:key:z6MkrZ... (Space DID)
+```
+
+**Step 4: Create Delegation** (specify exact capabilities)
+```bash
+storacha delegation create <AGENT_DID_from_step1> \
+  --can space/blob/add \
+  --can space/index/add \
+  --can filecoin/offer \
+  --can upload/add \
+  --base64
+# Output: mAYIEAIw... (Base64 Proof - very long string!)
+```
+
+**Step 5: Configure `.env`**
+```bash
+cd packages/nextjs
+cp env.example .env
+```
+
+Edit `.env`:
+```env
+W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
+W3STORAGE_SPACE_DID=did:key:z6MkrZ...
+W3STORAGE_PROOF=eyJpc3MiOiJkaWQ6...
 ```
 
 ---
 
 ### Option 1: Local Development (Recommended)
 
-**ไม่ต้องใช้ Sepolia ETH!**
+**No Sepolia ETH needed!**
 
 ```bash
 # 1. Clone
 git clone <your-repo>
 cd Zameme
 
-# 2. Install
+# 2. Setup Web3.Storage (see above)
+
+# 3. Install
 pnpm install
 
-# 3. Run (3 terminals)
+# 4. Run (3 terminals)
 pnpm chain              # Terminal 1: Blockchain
-pnpm deploy:localhost   # Terminal 2: Deploy (รอ 5 วิ)
+pnpm deploy:localhost   # Terminal 2: Deploy (wait 5 sec)
 pnpm start              # Terminal 3: Frontend
 ```
 
 **Then:**
-1. เปิด http://localhost:3000
-2. MetaMask → เชื่อม Hardhat Localhost (Chain ID: 31337)
+1. Open http://localhost:3000
+2. MetaMask → Connect to Hardhat Localhost (Chain ID: 31337)
 3. Import account: `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`
-4. Launch your first meme! 🚀
+4. Upload meme image (auto-crop to 512x512, upload to IPFS)
+5. Launch your first meme! 🚀
 
 ---
 
 ### Option 2: Sepolia Testnet
 
-**Setup .env:**
+**Setup Hardhat `.env`:**
 ```bash
 cd packages/hardhat
+cp .env.example .env
 ```
 
-Create `.env`:
+Edit `packages/hardhat/.env`:
 ```env
+PRIVATE_KEY=0xYOUR_SEPOLIA_TESTNET_PRIVATE_KEY
 SEPOLIA_RPC_URL=https://eth-sepolia.public.blastapi.io
-PRIVATE_KEY=0xYOUR_PRIVATE_KEY
+ETHERSCAN_API_KEY=YOUR_ETHERSCAN_API_KEY
+```
+
+**Setup Frontend `.env`:**
+```bash
+cd packages/nextjs
+cp env.example .env
+```
+
+Edit `packages/nextjs/.env`:
+```env
+# Web3.Storage (from setup steps above)
+W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
+W3STORAGE_PROOF=mAYIEAIw...
+
+# WalletConnect Project ID
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+
+# Network (IMPORTANT: must match deployment!)
+NEXT_PUBLIC_NETWORK=sepolia
 ```
 
 **Deploy:**
 ```bash
 cd ../..
-pnpm deploy:sepolia
-pnpm start
+pnpm deploy:sepolia  # Deploys Factory, auto-verifies on Etherscan
+pnpm start           # Start frontend
 ```
 
-Get Sepolia ETH: https://sepoliafaucet.com/
-
-**Update contract address:**
-```typescript
-// packages/nextjs/hooks/useZameme.ts
-const CONTRACT_ADDRESS = '0xYOUR_DEPLOYED_ADDRESS';
-```
+**Important Notes:**
+- Get Sepolia ETH: https://sepoliafaucet.com/
+- Contract address auto-detected from `deployedContracts.ts`
+- **After deploy, wait 5-10 minutes** for Zama Relayer to index contracts
+- Switch MetaMask to **Sepolia Testnet**
+- Make sure `.env` has `NEXT_PUBLIC_NETWORK=sepolia`
 
 ---
 
 ## 🎨 Features
 
 ### For Creators
-- ✅ Create meme token launches
-- ✅ Bonding curve (linear)
-- ✅ Track progress in real-time
-- ✅ Auto-graduate at 10 ETH
-- ✅ Manual graduate option
+- ✅ Upload meme images (IPFS via Web3.Storage)
+- ✅ Interactive crop tool (drag & zoom to 512x512)
+- ✅ Each token = separate ERC-20 contract
+- ✅ Custom name & symbol (validated)
+- ✅ Linear bonding curve (price increases with buys)
+- ✅ Real-time progress tracking
+- ✅ Auto-graduate at 0.1 ETH (testnet) / 10 ETH (mainnet)
+- ✅ Auto-create Uniswap V2 LP on graduate
+- ✅ Receive 20% ETH from sales
 
 ### For Buyers
-- ✅ Browse active tokens
-- ✅ Buy with **encrypted amounts** (FHE)
-- ✅ View **private receipts** (EIP-712 decrypt)
-- ✅ Fair price discovery
-- ✅ Progress-based (no time limit)
+- ✅ Browse tokens (compact card grid)
+- ✅ Token detail pages (chart + chat + buy)
+- ✅ Live price charts
+- ✅ Buy with custom amounts
+- ✅ Slippage control (Auto/0.5%/1%/2%/Custom)
+- ✅ Tokens held in Distributor (privacy!)
+- ✅ Claim to any address you want
+- ✅ Auto-refund excess ETH
+- ✅ Transaction history tracking
+- ✅ Per-token chat rooms
 
 ### Privacy Benefits
-- 🔒 **No whale watching** - ไม่เห็นใครซื้อเท่าไร
-- 🔒 **No front-running** - ป้องกัน MEV
-- 🔒 **No copycat** - ไม่มีใครลอกกลยุทธ์ได้
-- 🔒 **Fair for all** - ทุกคนเท่าเทียมกัน
+- 🔒 **Hidden Balances** - Tokens held in Distributor until claim
+- 🔒 **Address Separation** - Buy from A, claim to B
+- 🔒 **FHE Encrypted Storage** - Contributions encrypted on-chain
+- 🔒 **Fair Distribution** - Equal opportunity for all
 
 ---
 
@@ -186,9 +271,12 @@ const CONTRACT_ADDRESS = '0xYOUR_DEPLOYED_ADDRESS';
 
 ### Smart Contract
 - **Solidity 0.8.24**
+- **ERC-20** - OpenZeppelin standard
 - **FHEVM** - Zama's FHE library
 - **Bonding Curve** - Linear price increase
 - **Dual Storage** - Public + Encrypted
+- **Uniswap V2** - Auto-graduate LP creation
+- **Multi-network** - Sepolia, Mainnet support
 
 ### Frontend
 - **Next.js 14** - App Router
@@ -196,11 +284,14 @@ const CONTRACT_ADDRESS = '0xYOUR_DEPLOYED_ADDRESS';
 - **jobjab-fhevm-sdk** - Universal FHEVM SDK
 - **RainbowKit + Wagmi** - Wallet connection
 - **Ethers.js v6** - Contract interaction
+- **Web3.Storage (Storacha)** - IPFS image upload
+- **react-easy-crop** - Interactive image cropping
 
-### Encryption
+### Encryption & Storage
 - **FHE (Fully Homomorphic Encryption)** - Zama
 - **EIP-712** - Signature-based decryption
 - **Relayer SDK** - User decryption
+- **IPFS** - Decentralized image storage (Web3.Storage)
 
 ---
 
@@ -209,54 +300,99 @@ const CONTRACT_ADDRESS = '0xYOUR_DEPLOYED_ADDRESS';
 ```
 Zameme/
 ├── packages/
-│   ├── hardhat/                    # Smart Contracts
+│   ├── hardhat/                        # Smart Contracts
 │   │   ├── contracts/
-│   │   │   ├── ZamemeBondingCurve.sol  # Main contract
-│   │   │   └── MemeLaunch.sol          # (Old, not used)
+│   │   │   ├── MemeFactory.sol         # Factory contract
+│   │   │   ├── MemeToken.sol           # Individual ERC-20 tokens
+│   │   │   ├── ClaimDistributor.sol    # Claim system
+│   │   │   └── interfaces/
+│   │   │       └── IMemeToken.sol      # Token interface
 │   │   ├── deploy/
-│   │   │   └── deploy.ts           # Deploy script
-│   │   └── hardhat.config.ts       # Hardhat config
+│   │   │   └── deploy.ts               # Deploy script
+│   │   └── hardhat.config.ts           # Hardhat config
 │   │
-│   └── nextjs/                     # Frontend
+│   └── nextjs/                         # Frontend
 │       ├── app/
-│       │   ├── page.tsx            # Main page
-│       │   ├── providers.tsx       # Wagmi + FhevmProvider
-│       │   └── layout.tsx          # Layout
+│       │   ├── page.tsx                # Main page (Browse/Create/Claim/History)
+│       │   ├── token/[address]/        # Token detail page
+│       │   ├── providers.tsx           # Wagmi + FhevmProvider
+│       │   ├── layout.tsx              # Layout + metadata
+│       │   └── api/
+│       │       └── upload/             # Web3.Storage upload API
 │       ├── components/
-│       │   ├── BrowseTokens.tsx    # Browse tokens
-│       │   ├── CreateToken.tsx     # Launch new token
-│       │   └── MyPrivateReceipts.tsx  # Decrypt receipts
+│       │   ├── BrowseTokens.tsx        # Token grid (compact cards)
+│       │   ├── CreateToken.tsx         # Launch new token
+│       │   ├── ClaimTokens.tsx         # Claim tokens
+│       │   ├── TransactionHistory.tsx  # Activity history
+│       │   ├── PriceChart.tsx          # Live price chart
+│       │   ├── BuyPanel.tsx            # Buy form with settings
+│       │   ├── TokenChat.tsx           # Token chat
+│       │   └── ImageCropModal.tsx      # Crop tool
 │       └── hooks/
-│           ├── useZameme.ts        # Main hook
-│           └── useWagmiEthers.ts   # Ethers adapter
+│           ├── useZameme.ts            # Main contract hook
+│           ├── useDecryptionSignature.ts  # EIP-712 signing
+│           └── useWagmiEthers.ts       # Ethers adapter
 │
-├── IMPLEMENTATION.md               # Implementation guide
-├── .cursor/
-│   └── goals.prompts               # Project goals
-└── README.md                       # This file
+├── IMPLEMENTATION.md                   # Implementation guide
+└── README.md                           # This file
 ```
 
 ---
 
 ## 🎯 Development Status
 
-### ✅ Completed
-- ✅ **Smart Contract** - ZamemeBondingCurve with FHE
-- ✅ **Bonding Curve** - Linear price discovery
-- ✅ **Dual Storage** - Public + Encrypted
-- ✅ **Frontend UI** - Yellow/Black Zama theme
-- ✅ **SDK Integration** - jobjab-fhevm-sdk
-- ✅ **Encryption** - Buy with encrypted amounts
-- ✅ **Decryption** - Private receipts with EIP-712
-- ✅ **Auto-Graduate** - At 10 ETH threshold
+### ✅ Completed (v1.0)
 
-### 🔨 Todo (Future)
-- 🔨 DEX Integration (Uniswap V2/V3)
-- 🔨 IPFS for images
-- 🔨 Token metadata (ERC-20 standard)
+**Smart Contracts:**
+- ✅ **Factory Pattern** - Each meme = separate ERC-20 contract
+- ✅ **MemeToken** - Individual tokens with bonding curve + FHE
+- ✅ **ClaimDistributor** - Privacy via delayed claim
+- ✅ **Bonding Curve** - Linear price discovery
+- ✅ **Auto-Graduate** - Uniswap V2 LP creation (atomic)
+- ✅ **Refund Logic** - Auto-refund excess ETH
+- ✅ **SYMBOL Validation** - Contract + UI (3-8 chars, A-Z, 0-9)
+- ✅ **Symbol Uniqueness** - Prevent duplicates
+
+**Frontend:**
+- ✅ **Responsive UI** - Mobile/Tablet/Desktop optimized
+- ✅ **Token Detail Pages** - Individual page per token
+- ✅ **Price Charts** - Live price tracking (recharts)
+- ✅ **Token Chat** - Per-token discussion (localStorage)
+- ✅ **Image Upload** - IPFS via Web3.Storage/Storacha
+- ✅ **Image Cropping** - Interactive 512x512 crop tool
+- ✅ **Transaction History** - Activity tracking
+- ✅ **Settings Modal** - Slippage control (Auto/Custom)
+
+**Integration:**
+- ✅ **SDK Integration** - jobjab-fhevm-sdk
+- ✅ **FHE Encryption** - Encrypted contributions
+- ✅ **Multi-network** - Sepolia + Mainnet support
+- ✅ **Auto-verify** - Etherscan contract verification
+- ✅ **Auto-detect** - Contract address from deployments
+- ✅ **Clean Deploy** - Fresh deployment with `--reset` flag
+
+### 🔨 Future Improvements
+
+#### Near-term (1-2 weeks)
 - 🔨 Charts & analytics
+- 🔨 Token search & filtering
+- 🔨 Social sharing features
 - 🔨 Referral system
-- 🔨 Deploy to Sepolia/Mainnet
+- 🔨 Mobile app (React Native)
+
+#### Long-term (Research & Development)
+- 🔬 **Full Zero-Knowledge Privacy** (ZK-SNARKs Integration)
+  - ✅ totalRaised = PUBLIC (enables price calculation)
+  - ✅ price = PUBLIC (bonding curve works normally)
+  - ✅ progress = PUBLIC (good UX)
+  - 🔒 individual amounts = PRIVATE (completely hidden!)
+  - 🔒 token balances = PRIVATE (nobody knows who got what)
+  - **Technology**: Circom/Noir + ZK proof verification on-chain
+  - **Timeline**: 2-3 weeks development + testing
+  - **Tradeoffs**: 
+    - Gas costs: +200-300% (proof verification)
+    - UX: Slower (5-10s proof generation client-side)
+    - Complexity: High (requires ZK expertise)
 
 ---
 
@@ -285,36 +421,72 @@ pnpm test               # Run contract tests
 
 ## 🧪 Testing Guide
 
-### Test 1: Create Token
+### Test 1: Upload Image
 1. Connect wallet
 2. Go to "Launch" tab
-3. Fill token info
-4. Click "LAUNCH TOKEN"
-5. ✅ Token appears in "Browse" tab
+3. Click "📁 Choose Meme Image"
+4. Select image file
+5. **Interactive Crop Modal** opens
+6. Drag to position, use slider to zoom
+7. Click "✅ Done"
+8. ✅ Auto-upload to IPFS (3-10 seconds)
+9. ✅ Preview shows 512x512 square image
 
-### Test 2: Buy Tokens
-1. Go to "Browse" tab
-2. Select a token
-3. Enter ETH amount (e.g., 0.1)
-4. Click "Buy (Amount Private)"
-5. ✅ Amount is encrypted on-chain
-6. ✅ Progress bar updates
-7. ✅ Price increases
+### Test 2: Create Token
+1. Fill token info:
+   - Name: `Moon Cat`
+   - Symbol: `MCAT` (3-8 chars, A-Z, 0-9 only)
+   - Description: `To the moon! 🚀`
+2. Click "🚀 LAUNCH TOKEN"
+3. Sign transaction
+4. ✅ Token appears in "Browse" tab with image from IPFS
 
-### Test 3: View Private Receipt
-1. Go to "My Receipts" tab
-2. Click "Sign to View"
-3. Sign EIP-712 in MetaMask
-4. Expand token card
-5. ✅ See your contribution (decrypted)
-6. ✅ See your token balance (decrypted)
-7. ✅ Only you can see this!
+### Test 3: Browse and Buy Tokens
+1. Go to "🔥 Browse" tab
+2. Click on any token card
+3. Opens **Token Detail Page** with:
+   - 📊 Live price chart
+   - 💰 Buy panel (right sidebar)
+   - 💬 Token chat
+4. Enter amount (e.g., 0.05 ETH)
+5. Optional: Click ⚙️ to adjust slippage (Auto/0.5%/1%/2%/Custom)
+6. Click "💰 Buy"
+7. Sign transaction
+8. ✅ Progress bar updates immediately
+9. ✅ Price increases on bonding curve
+10. ✅ Tokens minted to **Distributor** (not your wallet!)
 
-### Test 4: Graduation
-1. Buy tokens until totalRaised >= 10 ETH
-2. ✅ Token auto-graduates
-3. ✅ Shows "GRADUATED" status
-4. ✅ Ready for DEX
+### Test 4: Claim Your Tokens
+1. Go to "🎁 Claim" tab
+2. See all tokens you can claim
+3. Enter destination address (can be different from purchase address!)
+4. Click "🎁 Claim All"
+5. ✅ Tokens transferred to your chosen address
+6. ✅ Now visible in wallet
+
+### Test 5: View Transaction History
+1. Go to "📜 History" tab
+2. See all your activities:
+   - ✨ Tokens created
+   - 💰 Purchases made
+   - 🎁 Claims completed
+3. Click any transaction to view on Etherscan
+
+### Test 6: Graduation & Uniswap LP
+1. Buy tokens until totalRaised >= 0.1 ETH (testnet threshold)
+2. ✅ Auto-graduate in same transaction
+3. ✅ Uniswap V2 LP created (80% ETH)
+4. ✅ LP tokens burned to address(0)
+5. ✅ 20% ETH sent to creator
+6. ✅ Shows "GRADUATED" badge
+7. ✅ Token tradeable on Uniswap V2
+
+### Test 7: Refund Excess ETH
+1. When token at 0.09 ETH raised
+2. Buy 0.05 ETH
+3. ✅ Only 0.01 ETH used (to reach 0.1 threshold)
+4. ✅ 0.04 ETH refunded automatically
+5. ✅ Token auto-graduates
 
 ---
 
@@ -372,14 +544,14 @@ PRs welcome! Please check [IMPLEMENTATION.md](./IMPLEMENTATION.md) first.
 
 **Made with ❤️ for Zama Builder Program - October 2025**
 
-> ใช้ Universal FHEVM SDK ของเราเอง!
+> Using our own Universal FHEVM SDK!
 
 ---
 
 ## 🎉 Key Achievements
 
-✅ **100% ตาม goals.prompts**  
-✅ **Bonding curve แบบ pump.fun**  
+✅ **100% follows goals.prompts**  
+✅ **pump.fun-style bonding curve**  
 ✅ **Privacy-first with FHE**  
 ✅ **Beautiful UI (Yellow/Black)**  
 ✅ **Ready to deploy**  

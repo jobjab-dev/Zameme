@@ -8,18 +8,41 @@ import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { FhevmProvider } from 'jobjab-fhevm-sdk/adapters/react';
 import '@rainbow-me/rainbowkit/styles.css';
 
-const config = getDefaultConfig({
-  appName: 'Zameme',
-  projectId: 'YOUR_PROJECT_ID',
-  chains: [sepolia, localhost],
-  transports: {
-    [sepolia.id]: http('https://eth-sepolia.public.blastapi.io'),
-    [localhost.id]: http('http://127.0.0.1:8545'),
-  },
-  ssr: true,
-});
+function makeConfig() {
+  return getDefaultConfig({
+    appName: 'Zameme',
+    projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'YOUR_PROJECT_ID',
+    chains: [sepolia, localhost],
+    transports: {
+      [sepolia.id]: http(process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL || 'https://eth-sepolia.public.blastapi.io'),
+      [localhost.id]: http(process.env.NEXT_PUBLIC_LOCALHOST_RPC_URL || 'http://127.0.0.1:8545'),
+    },
+    ssr: false,
+  });
+}
 
-const queryClient = new QueryClient();
+let wagmiConfig: ReturnType<typeof makeConfig> | undefined;
+let reactQueryClient: QueryClient | undefined;
+
+function getWagmiConfig() {
+  if (!wagmiConfig) {
+    wagmiConfig = makeConfig();
+  }
+  return wagmiConfig;
+}
+
+function getQueryClient() {
+  if (!reactQueryClient) {
+    reactQueryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          refetchOnWindowFocus: false,
+        },
+      },
+    });
+  }
+  return reactQueryClient;
+}
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -28,22 +51,26 @@ export function Providers({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
+    <WagmiProvider config={getWagmiConfig()}>
+      <QueryClientProvider client={getQueryClient()}>
         <RainbowKitProvider>
           <FhevmProvider
             config={{
-              network: 'localhost',
-              provider: typeof window !== 'undefined' ? (window as any).ethereum : undefined,
+              network: process.env.NEXT_PUBLIC_NETWORK || 'localhost',
+              provider: typeof window !== 'undefined' 
+                ? (window as any).ethereum 
+                : process.env.NEXT_PUBLIC_LOCALHOST_RPC_URL || 'http://127.0.0.1:8545',
               mockChains: {
                 31337: 'localhost',
               },
             }}
             onStatusChange={(status) => {
-              if (mounted) {
-                console.log('FHEVM Status:', status);
-              }
+              console.log('FHEVM Status:', status);
             }}
           >
             {children}

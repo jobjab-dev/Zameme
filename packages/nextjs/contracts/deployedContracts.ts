@@ -5,74 +5,40 @@
  */
 
 export const deployedContracts = {
-  "31337": {
-    "ZamemeBondingCurve": {
-      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "11155111": {
+    "MemeFactory": {
+      "address": "0x80577f7C9507A3087238f19a647f48a5d3b94522",
       "abi": [
         {
-          "anonymous": false,
           "inputs": [
             {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
+              "internalType": "address",
+              "name": "_router",
+              "type": "address"
             },
             {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "totalRaised",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "tokensSold",
-              "type": "uint256"
+              "internalType": "address",
+              "name": "_weth",
+              "type": "address"
             }
           ],
-          "name": "Graduated",
-          "type": "event"
+          "stateMutability": "nonpayable",
+          "type": "constructor"
         },
         {
           "anonymous": false,
           "inputs": [
             {
               "indexed": true,
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
             },
             {
               "indexed": true,
               "internalType": "address",
-              "name": "buyer",
+              "name": "distributorAddress",
               "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "ethAmount",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "tokensReceived",
-              "type": "uint256"
-            }
-          ],
-          "name": "Purchase",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
             },
             {
               "indexed": false,
@@ -87,115 +53,22 @@ export const deployedContracts = {
               "type": "string"
             },
             {
-              "indexed": true,
+              "indexed": false,
               "internalType": "address",
               "name": "creator",
               "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
             }
           ],
           "name": "TokenCreated",
           "type": "event"
         },
         {
-          "inputs": [],
-          "name": "GRADUATION_THRESHOLD",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "INITIAL_PRICE",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "MIN_PURCHASE",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "TOKEN_SUPPLY",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "externalEuint64",
-              "name": "encryptedAmount",
-              "type": "bytes32"
-            },
-            {
-              "internalType": "bytes",
-              "name": "inputProof",
-              "type": "bytes"
-            }
-          ],
-          "name": "buy",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "ethAmount",
-              "type": "uint256"
-            }
-          ],
-          "name": "calculateTokensForEth",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
           "inputs": [
             {
               "internalType": "uint256",
@@ -203,12 +76,12 @@ export const deployedContracts = {
               "type": "uint256"
             }
           ],
-          "name": "contributorCount",
+          "name": "allTokens",
           "outputs": [
             {
-              "internalType": "uint256",
+              "internalType": "address",
               "name": "",
-              "type": "uint256"
+              "type": "address"
             }
           ],
           "stateMutability": "view",
@@ -240,28 +113,27 @@ export const deployedContracts = {
           "name": "createToken",
           "outputs": [
             {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "distributorAddress",
+              "type": "address"
             }
           ],
           "stateMutability": "nonpayable",
           "type": "function"
         },
         {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            }
-          ],
-          "name": "getCurrentPrice",
+          "inputs": [],
+          "name": "getAllTokens",
           "outputs": [
             {
-              "internalType": "uint256",
+              "internalType": "address[]",
               "name": "",
-              "type": "uint256"
+              "type": "address[]"
             }
           ],
           "stateMutability": "view",
@@ -271,16 +143,16 @@ export const deployedContracts = {
           "inputs": [
             {
               "internalType": "uint256",
-              "name": "tokenId",
+              "name": "index",
               "type": "uint256"
             }
           ],
-          "name": "getMyContribution",
+          "name": "getTokenAddress",
           "outputs": [
             {
-              "internalType": "euint64",
+              "internalType": "address",
               "name": "",
-              "type": "bytes32"
+              "type": "address"
             }
           ],
           "stateMutability": "view",
@@ -289,161 +161,29 @@ export const deployedContracts = {
         {
           "inputs": [
             {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            }
-          ],
-          "name": "getMyTokenBalance",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            }
-          ],
-          "name": "getProgress",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            }
-          ],
-          "name": "getRemainingToGraduate",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
+              "internalType": "address",
+              "name": "tokenAddress",
+              "type": "address"
             }
           ],
           "name": "getTokenInfo",
           "outputs": [
             {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "symbol",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "imageUrl",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "description",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "creator",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "raised",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "sold",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "progress",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "currentPrice",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "contributors",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "graduated",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "tokenId",
-              "type": "uint256"
-            }
-          ],
-          "name": "graduate",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "token",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "distributor",
+                  "type": "address"
+                }
+              ],
+              "internalType": "struct MemeFactory.TokenInfo",
               "name": "",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "hasContributed",
-          "outputs": [
-            {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
+              "type": "tuple"
             }
           ],
           "stateMutability": "view",
@@ -451,7 +191,7 @@ export const deployedContracts = {
         },
         {
           "inputs": [],
-          "name": "nextTokenId",
+          "name": "getTotalTokens",
           "outputs": [
             {
               "internalType": "uint256",
@@ -464,123 +204,49 @@ export const deployedContracts = {
         },
         {
           "inputs": [],
-          "name": "protocolId",
+          "name": "router",
           "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "pure",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "tokens",
-          "outputs": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "symbol",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "imageUrl",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "description",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "creator",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "createdAt",
-              "type": "uint256"
-            },
-            {
-              "internalType": "bool",
-              "name": "isGraduated",
-              "type": "bool"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "tokensSold",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "totalRaised",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            },
             {
               "internalType": "address",
               "name": "",
               "type": "address"
             }
           ],
-          "name": "userTokenBalances",
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "tokenInfo",
           "outputs": [
             {
-              "internalType": "uint256",
+              "internalType": "address",
+              "name": "token",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "distributor",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "weth",
+          "outputs": [
+            {
+              "internalType": "address",
               "name": "",
-              "type": "uint256"
+              "type": "address"
             }
           ],
           "stateMutability": "view",

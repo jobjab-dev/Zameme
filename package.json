@@ -15,6 +15,7 @@
   "scripts": {
     "chain": "pnpm --filter ./packages/hardhat chain",
     "compile": "pnpm --filter ./packages/hardhat compile",
+    "clean": "pnpm --filter ./packages/hardhat clean",
     "deploy:localhost": "pnpm --filter ./packages/hardhat deploy:localhost && pnpm generate",
     "deploy:sepolia": "pnpm --filter ./packages/hardhat deploy:sepolia && pnpm generate",
     "generate": "ts-node -T ./scripts/generateTsAbis.ts",

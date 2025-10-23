@@ -5,36 +5,36 @@ import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { CreateToken } from '~/components/CreateToken';
 import { BrowseTokens } from '~/components/BrowseTokens';
-import { MyPrivateReceipts } from '~/components/MyPrivateReceipts';
+import { ClaimTokens } from '~/components/ClaimTokens';
+import { TransactionHistory } from '~/components/TransactionHistory';
 
 export default function ZamemePage() {
-  const [activeTab, setActiveTab] = useState<'browse' | 'create' | 'my'>('browse');
+  const [activeTab, setActiveTab] = useState<'browse' | 'create' | 'claim' | 'history'>('browse');
   const { isConnected } = useAccount();
   
   return (
     <div className="min-h-screen bg-black">
       {/* Header */}
-      <header className="border-b-4 border-yellow-400 py-8">
+      <header className="border-b-4 border-yellow-400 py-4 md:py-8">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-6xl font-black">
-                <span className="text-yellow-400">ZAME</span>
-                <span className="text-white">ME</span>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
+              <h1 className="text-4xl md:text-6xl font-black">
+                <span className="text-yellow-400">ZAMEME</span>
+                <span className="text-white">.FUN</span>
               </h1>
-              <p className="text-gray-400 mt-2 text-sm">
-                🔒 Confidential Fair Launch • 💰 Private Contributions • ⚖️ Fair Distribution
-              </p>
             </div>
-            <ConnectButton />
+            <div className="scale-90 md:scale-100">
+              <ConnectButton />
+            </div>
           </div>
         </div>
       </header>
 
       {/* Navigation */}
-      <nav className="bg-yellow-400 py-4">
+      <nav className="bg-yellow-400 py-2 md:py-4 overflow-x-auto">
         <div className="container mx-auto px-4">
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2 min-w-max md:min-w-0">
             <TabButton
               active={activeTab === 'browse'}
               onClick={() => setActiveTab('browse')}
@@ -50,36 +50,46 @@ export default function ZamemePage() {
               desc="New Token"
             />
             <TabButton
-              active={activeTab === 'my'}
-              onClick={() => setActiveTab('my')}
-              icon="🔒"
-              label="My Receipts"
-              desc="Private (Decrypt)"
+              active={activeTab === 'claim'}
+              onClick={() => setActiveTab('claim')}
+              icon="🎁"
+              label="Claim"
+              desc="Your Tokens"
+            />
+            <TabButton
+              active={activeTab === 'history'}
+              onClick={() => setActiveTab('history')}
+              icon="📜"
+              label="History"
+              desc="Your Activity"
             />
           </div>
         </div>
       </nav>
 
       {/* Content */}
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-6 md:py-12">
         {!isConnected ? (
-          <div className="text-center py-20">
-            <div className="bg-yellow-400 text-black p-12 rounded-lg inline-block max-w-lg">
-              <div className="text-6xl mb-4">🔒</div>
-              <h2 className="text-3xl font-black mb-4">Connect to Get Started</h2>
-              <p className="mb-6">
+          <div className="text-center py-10 md:py-20">
+            <div className="bg-yellow-400 text-black p-6 md:p-12 rounded-lg inline-block max-w-lg mx-auto">
+              <div className="text-4xl md:text-6xl mb-4">🔒</div>
+              <h2 className="text-2xl md:text-3xl font-black mb-4">Connect to Get Started</h2>
+              <p className="mb-6 text-sm md:text-base">
                 Join the confidential meme launch revolution!
                 <br />
                 Your contributions stay private. 
               </p>
-              <ConnectButton />
+              <div className="scale-90 md:scale-100">
+                <ConnectButton />
+              </div>
             </div>
           </div>
         ) : (
           <>
             {activeTab === 'browse' && <BrowseTokens />}
             {activeTab === 'create' && <CreateToken />}
-            {activeTab === 'my' && <MyPrivateReceipts />}
+            {activeTab === 'claim' && <ClaimTokens />}
+            {activeTab === 'history' && <TransactionHistory />}
           </>
         )}
       </main>
@@ -116,14 +126,17 @@ function TabButton({ active, onClick, icon, label, desc }: any) {
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-3 font-bold transition-all ${
+      className={`px-3 md:px-6 py-2 md:py-3 font-bold transition-all text-sm md:text-base ${
         active
           ? 'bg-black text-yellow-400'
           : 'bg-yellow-400 text-black hover:bg-yellow-300'
       }`}
     >
-      <div>{icon} {label}</div>
-      <div className="text-xs opacity-75">{desc}</div>
+      <div className="whitespace-nowrap">
+        <span className="inline md:hidden">{icon}</span>
+        <span className="hidden md:inline">{icon} {label}</span>
+      </div>
+      <div className="text-xs opacity-75 hidden md:block">{desc}</div>
     </button>
   );
 }

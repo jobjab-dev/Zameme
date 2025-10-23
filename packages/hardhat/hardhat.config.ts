@@ -1,5 +1,6 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "@nomicfoundation/hardhat-verify";
 import "@fhevm/hardhat-plugin";
 import "hardhat-deploy";
 import * as dotenv from "dotenv";
@@ -30,6 +31,12 @@ const config: HardhatUserConfig = {
       chainId: 11155111,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY || "",
+  },
+  sourcify: {
+    enabled: false,
   },
   namedAccounts: {
     deployer: {
