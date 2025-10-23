@@ -7,7 +7,7 @@ export function useWagmiEthers() {
   const chainId = useChainId();
   const { data: walletClient } = useWalletClient();
 
-  const [ethersReadonlyProvider, setEthersReadonlyProvider] = useState<ethers.JsonRpcProvider | null>(null);
+  const [ethersReadonlyProvider, setEthersReadonlyProvider] = useState<ethers.BrowserProvider | null>(null);
   const [ethersSigner, setEthersSigner] = useState<ethers.JsonRpcSigner | null>(null);
 
   useEffect(() => {
