@@ -20,12 +20,12 @@
 
 ### 🔥 Key Features
 
-- ✅ **Bonding Curve** - Linear price discovery
-- ✅ **No Time Limit** - Progress-based graduation
-- ✅ **Fair Launch** - Equal opportunity for all
-- ✅ **Individual Privacy** - FHE encrypted contributions
-- ✅ **Private Receipts** - EIP-712 signature decryption
-- ✅ **Auto-Graduate** - Automatic DEX listing at target
+- ✅ **Bonding Curve** - Linear price discovery mechanism
+- ✅ **No Time Limit** - Progress-based graduation (no rush!)
+- ✅ **Fair Launch** - Equal opportunity for all participants
+- ✅ **Privacy Layer** - FHE encrypted contributions on-chain
+- ✅ **Distributor Pattern** - Claim tokens to any address you choose
+- ✅ **Auto-Graduate** - Automatic Uniswap V2 LP creation at 0.1 ETH
 
 ---
 
@@ -38,12 +38,13 @@
 - ✅ **Remaining to Graduate** - ETH needed to finish
 - ✅ **Contributors Count** - Number of buyers
 
-### **PRIVATE** Data (FHE Encrypted):
-- 🔒 **Individual Amounts** - How much each person bought
-- 🔒 **Token Balances** - How many tokens each person received
-- 🔒 **Private Receipts** - View your own amounts via EIP-712 signature
+### **PRIVACY** Design:
+- 🔒 **Encrypted Contributions** - Buy amounts stored encrypted with FHE on-chain
+- 🔒 **Distributor Pattern** - Tokens held in separate contract until claim
+- 🔒 **Claim Separation** - Buy from address A, claim to address B
+- 🔒 **Fair Launch** - No advantage for whales or snipers
 
-**Summary:** Everyone sees the **big picture**, but only **your own amounts**.
+**Summary:** Everyone sees the **big picture**, contributions stored **encrypted on-chain**, and you control **when & where** to claim.
 
 ---
 
@@ -54,7 +55,7 @@
 ✨ Launch New Token
 ├─ Name + Symbol
 ├─ Image + Description
-└─ Target: 10 ETH (auto-graduate)
+└─ Target: 0.1 ETH (auto-graduate)
 ```
 
 ### 2. **Buyers** Purchase via Bonding Curve
@@ -68,25 +69,26 @@
 ### 3. **Platform** Shows Public Info
 ```
 📊 Public Info
-├─ Progress: 67% (6.7/10 ETH)
-├─ Price: 0.000000067 ETH
-├─ Remaining: 3.3 ETH
-└─ Contributors: 15 🔒 (amounts hidden)
+├─ Progress: 67% (0.067/0.1 ETH)
+├─ Price: 0.000000067 ETH (increases with demand)
+├─ Remaining: 0.033 ETH
+└─ Contributors: 15 🔒 (individual amounts encrypted)
 ```
 
-### 4. **Graduate** at 10 ETH
+### 4. **Graduate** at 0.1 ETH
 ```
 🎓 Auto-Graduate
-├─ Reveal total raised (public decrypt)
-└─ Ready for DEX listing
+├─ Create Uniswap V2 LP (80% ETH)
+├─ Creator receives 20% ETH
+└─ Ready for trading on DEX
 ```
 
-### 5. **View Private Receipt**
+### 5. **Claim Your Tokens**
 ```
-🔓 My Private Receipts
-├─ Sign EIP-712 message
-├─ Decrypt your own amounts
-└─ Only you can see this!
+🎁 Claim Tokens
+├─ View claimable amounts
+├─ Choose destination address
+└─ Transfer from Distributor to your wallet
 ```
 
 ---
@@ -143,14 +145,21 @@ storacha delegation create <AGENT_DID_from_step1> \
 **Step 5: Configure `.env`**
 ```bash
 cd packages/nextjs
-cp env.example .env
+# Create .env file
 ```
 
-Edit `.env`:
+Edit `packages/nextjs/.env` (create new file):
 ```env
+# Web3.Storage (Required for image upload)
 W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
 W3STORAGE_SPACE_DID=did:key:z6MkrZ...
 W3STORAGE_PROOF=eyJpc3MiOiJkaWQ6...
+
+# WalletConnect (Optional)
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+
+# Network (localhost/sepolia)
+NEXT_PUBLIC_NETWORK=localhost
 ```
 
 ---
@@ -186,29 +195,13 @@ pnpm start              # Terminal 3: Frontend
 
 ### Option 2: Sepolia Testnet
 
-**Setup Hardhat `.env`:**
-```bash
-cd packages/hardhat
-cp .env.example .env
-```
-
-Edit `packages/hardhat/.env`:
-```env
-PRIVATE_KEY=0xYOUR_SEPOLIA_TESTNET_PRIVATE_KEY
-SEPOLIA_RPC_URL=https://eth-sepolia.public.blastapi.io
-ETHERSCAN_API_KEY=YOUR_ETHERSCAN_API_KEY
-```
-
-**Setup Frontend `.env`:**
-```bash
-cd packages/nextjs
-cp env.example .env
-```
+**Note:** You only need `.env` in **`packages/nextjs/`** - no separate hardhat config needed!
 
 Edit `packages/nextjs/.env`:
 ```env
-# Web3.Storage (from setup steps above)
+# Web3.Storage (Required for image upload)
 W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
+W3STORAGE_SPACE_DID=did:key:z6MkrZ...
 W3STORAGE_PROOF=mAYIEAIw...
 
 # WalletConnect Project ID
@@ -216,6 +209,9 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 # Network (IMPORTANT: must match deployment!)
 NEXT_PUBLIC_NETWORK=sepolia
+
+# Deployer Private Key (for deployment only)
+DEPLOYER_PRIVATE_KEY=0xYOUR_SEPOLIA_TESTNET_PRIVATE_KEY
 ```
 
 **Deploy:**
@@ -260,10 +256,10 @@ pnpm start           # Start frontend
 - ✅ Per-token chat rooms
 
 ### Privacy Benefits
-- 🔒 **Hidden Balances** - Tokens held in Distributor until claim
-- 🔒 **Address Separation** - Buy from A, claim to B
-- 🔒 **FHE Encrypted Storage** - Contributions encrypted on-chain
-- 🔒 **Fair Distribution** - Equal opportunity for all
+- 🔒 **Distributor Pattern** - Tokens held in separate contract until you claim
+- 🔒 **Address Separation** - Buy from address A, claim to address B
+- 🔒 **FHE Encrypted Storage** - Buy amounts stored encrypted on-chain
+- 🔒 **Fair Launch** - No advantage for whales, no sniping
 
 ---
 
@@ -288,10 +284,9 @@ pnpm start           # Start frontend
 - **react-easy-crop** - Interactive image cropping
 
 ### Encryption & Storage
-- **FHE (Fully Homomorphic Encryption)** - Zama
-- **EIP-712** - Signature-based decryption
-- **Relayer SDK** - User decryption
-- **IPFS** - Decentralized image storage (Web3.Storage)
+- **FHE (Fully Homomorphic Encryption)** - Zama FHEVM
+- **IPFS** - Decentralized image storage via Web3.Storage (Storacha)
+- **Encrypted State** - Buy amounts stored encrypted on-chain
 
 ---
 
@@ -330,10 +325,8 @@ Zameme/
 │       │   └── ImageCropModal.tsx      # Crop tool
 │       └── hooks/
 │           ├── useZameme.ts            # Main contract hook
-│           ├── useDecryptionSignature.ts  # EIP-712 signing
 │           └── useWagmiEthers.ts       # Ethers adapter
 │
-├── IMPLEMENTATION.md                   # Implementation guide
 └── README.md                           # This file
 ```
 
@@ -492,33 +485,31 @@ pnpm test               # Run contract tests
 
 ## 🔐 Security
 
-### Access Control (ACL)
+### FHE Encryption
 ```solidity
-// Contract sets permissions
-FHE.allow(userContributions[msg.sender], msg.sender);  // User can decrypt
-FHE.allowThis(userContributions[msg.sender]);          // Contract can use
+// Contract stores encrypted contributions
+euint64 encAmount = FHE.fromExternal(encryptedAmount, inputProof);
+userContributions[msg.sender] = encAmount;
+
+// Set ACL permissions
+FHE.allow(userContributions[msg.sender], msg.sender);
+FHE.allowThis(userContributions[msg.sender]);
 ```
 
-### EIP-712 Signature
-```typescript
-// User signs typed data
-const eip712 = client.createEIP712(
-  publicKey,
-  [contractAddress],
-  timestamp,
-  365 // days
-);
-const signature = await signer.signTypedData(...);
+### Distributor Pattern
+```solidity
+// Tokens minted to Distributor, not directly to buyer
+_mint(distributor, tokensToReceive);
+userTokenBalances[msg.sender] += tokensToReceive;
+
+// User claims later to any address
+function claimAll(address to) external { ... }
 ```
 
-### Decryption
-```typescript
-// Only owner can decrypt
-const decrypted = await client.decrypt(
-  [{ handle, contractAddress }],
-  signature
-);
-```
+### Bonding Curve Security
+- ✅ ReentrancyGuard on all state-changing functions
+- ✅ Auto-refund excess ETH when reaching graduation threshold
+- ✅ Atomic LP creation (no frontrunning)
 
 ---
 
@@ -530,15 +521,15 @@ BSD-3-Clause-Clear
 
 ## 🤝 Contributing
 
-PRs welcome! Please check [IMPLEMENTATION.md](./IMPLEMENTATION.md) first.
+PRs welcome! Please read the code structure in `packages/` directory first.
 
 ---
 
 ## 📞 Support
 
-- **Docs:** [IMPLEMENTATION.md](./IMPLEMENTATION.md)
 - **Zama Docs:** https://docs.zama.ai/
-- **SDK:** https://www.npmjs.com/package/jobjab-fhevm-sdk
+- **SDK Docs:** https://www.npmjs.com/package/jobjab-fhevm-sdk
+- **SDK GitHub:** https://github.com/jobjab-dev/fhevm-react-template
 
 ---
 
@@ -550,10 +541,8 @@ PRs welcome! Please check [IMPLEMENTATION.md](./IMPLEMENTATION.md) first.
 
 ## 🎉 Key Achievements
 
-✅ **100% follows goals.prompts**  
-✅ **pump.fun-style bonding curve**  
+✅ **100% follows goals.prompts**    
 ✅ **Privacy-first with FHE**  
-✅ **Beautiful UI (Yellow/Black)**  
 ✅ **Ready to deploy**  
 
 **Let's launch some memes! 🚀**

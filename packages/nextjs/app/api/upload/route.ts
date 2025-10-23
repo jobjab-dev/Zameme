@@ -24,6 +24,8 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
     const file = formData.get('file');
+    const tokenSymbol = formData.get('tokenSymbol');
+    const tokenName = formData.get('tokenName');
 
     if (!file || !(file instanceof Blob)) {
       return NextResponse.json(
@@ -32,9 +34,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get filename and type
+    const fileType = file.type || 'image/jpeg';
+    const extension = fileType.split('/')[1] || 'jpg';
+    
+    // Create meaningful filename based on token info
+    let fileName: string;
+    if (tokenSymbol && typeof tokenSymbol === 'string') {
+      fileName = `${tokenSymbol.toLowerCase()}-meme.${extension}`;
+    } else if (tokenName && typeof tokenName === 'string') {
+      fileName = `${tokenName.toLowerCase().replace(/\s+/g, '-')}-meme.${extension}`;
+    } else if (file instanceof File) {
+      fileName = file.name;
+    } else {
+      fileName = `meme-${Date.now()}.${extension}`;
+    }
+    
     console.log('File received:', {
-      name: file instanceof File ? file.name : 'blob',
-      type: file.type,
+      name: fileName,
+      type: fileType,
       size: file.size,
     });
 
@@ -54,7 +72,7 @@ export async function POST(request: NextRequest) {
     // Convert to File if needed
     const uploadFile = file instanceof File 
       ? file 
-      : new File([file], 'meme.jpg', { type: file.type });
+      : new File([file], fileName, { type: fileType });
 
     const cid = await client.uploadFile(uploadFile);
     console.log('Upload success!');

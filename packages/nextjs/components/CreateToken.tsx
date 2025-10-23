@@ -67,13 +67,20 @@ export function CreateToken() {
   const uploadToIPFS = async (file: File) => {
     setIsUploading(true);
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', file);
+      
+      // Send token name/symbol for meaningful filename
+      if (formData.symbol) {
+        uploadFormData.append('tokenSymbol', formData.symbol);
+      } else if (formData.name) {
+        uploadFormData.append('tokenName', formData.name);
+      }
 
       console.log('Uploading to IPFS...');
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData,
+        body: uploadFormData,
       });
 
       const data = await response.json();
