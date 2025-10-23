@@ -67,31 +67,15 @@ export function CreateToken() {
   const uploadToIPFS = async (file: File) => {
     setIsUploading(true);
     try {
-      const uploadFormData = new FormData();
-      uploadFormData.append('file', file);
+      // Dynamically import to avoid SSR issues
+      const { uploadToIPFS: upload } = await import('~/lib/uploadToIPFS');
       
-      // Send token name/symbol for meaningful filename
-      if (formData.symbol) {
-        uploadFormData.append('tokenSymbol', formData.symbol);
-      } else if (formData.name) {
-        uploadFormData.append('tokenName', formData.name);
-      }
-
       console.log('Uploading to IPFS...');
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: uploadFormData,
-      });
+      const result = await upload(file);
+      console.log('Upload response:', result);
 
-      const data = await response.json();
-      console.log('Upload response:', data);
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Upload failed');
-      }
-
-      setFormData((prev) => ({ ...prev, imageUrl: data.httpUrl }));
-      return data.httpUrl;
+      setFormData((prev) => ({ ...prev, imageUrl: result.httpUrl }));
+      return result.httpUrl;
     } catch (error: any) {
       console.error('Upload error:', error);
       throw error;

@@ -150,10 +150,9 @@ cd packages/nextjs
 
 Edit `packages/nextjs/.env` (create new file):
 ```env
-# Web3.Storage (Required for image upload)
-W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
-W3STORAGE_SPACE_DID=did:key:z6MkrZ...
-W3STORAGE_PROOF=eyJpc3MiOiJkaWQ6...
+# Web3.Storage (Required for image upload - client-side)
+NEXT_PUBLIC_W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
+NEXT_PUBLIC_W3STORAGE_PROOF=mAYIEAIw...
 
 # WalletConnect (Optional)
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
@@ -199,10 +198,9 @@ pnpm start              # Terminal 3: Frontend
 
 Edit `packages/nextjs/.env`:
 ```env
-# Web3.Storage (Required for image upload)
-W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
-W3STORAGE_SPACE_DID=did:key:z6MkrZ...
-W3STORAGE_PROOF=mAYIEAIw...
+# Web3.Storage (Required for image upload - client-side)
+NEXT_PUBLIC_W3STORAGE_PRIVATE_KEY=MgCb+bRGl0...
+NEXT_PUBLIC_W3STORAGE_PROOF=mAYIEAIw...
 
 # WalletConnect Project ID
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
@@ -311,9 +309,9 @@ Zameme/
 │       │   ├── page.tsx                # Main page (Browse/Create/Claim/History)
 │       │   ├── token/[address]/        # Token detail page
 │       │   ├── providers.tsx           # Wagmi + FhevmProvider
-│       │   ├── layout.tsx              # Layout + metadata
-│       │   └── api/
-│       │       └── upload/             # Web3.Storage upload API
+│       │   └── layout.tsx              # Layout + metadata
+│       ├── lib/
+│       │   └── uploadToIPFS.ts         # Client-side IPFS upload
 │       ├── components/
 │       │   ├── BrowseTokens.tsx        # Token grid (compact cards)
 │       │   ├── CreateToken.tsx         # Launch new token
