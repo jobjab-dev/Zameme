@@ -10,7 +10,7 @@
 
 ## 🌐 Live Demo
 
-🚀 **[Try Zameme.fun Now](https://your-demo-link-here.vercel.app)** 
+🚀 **[Try Zameme.fun Now](https://zameme-fun.vercel.app/)** 
 
 *Deploy to Sepolia testnet - Get free testnet ETH from [sepoliafaucet.com](https://sepoliafaucet.com/)*
 
